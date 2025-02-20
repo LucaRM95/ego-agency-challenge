@@ -1,50 +1,59 @@
-# React + TypeScript + Vite
+# Proyecto de Prueba - Desafío Técnico
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es un desafío técnico desarrollado con **Vite**, **ReactJS**, **TailwindCSS**, **SwiperJS**, **React-Redux** y **Redux Toolkit**.
 
-Currently, two official plugins are available:
+## Tecnologías Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Vite](https://vitejs.dev/) - Entorno de desarrollo rápido
+- [ReactJS](https://react.dev/) - Biblioteca para la construcción de interfaces de usuario
+- [TailwindCSS](https://tailwindcss.com/) - Framework de CSS para diseño responsivo
+- [SwiperJS](https://swiperjs.com/) - Biblioteca para carruseles y sliders
+- [React-Redux](https://react-redux.js.org/) - Gestión de estado con Redux
+- [Redux Toolkit](https://redux-toolkit.js.org/) - Conjunto de herramientas para Redux
 
-## Expanding the ESLint configuration
+## Requisitos Previos
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Antes de ejecutar el proyecto, asegúrate de tener instalado:
 
-- Configure the top-level `parserOptions` property like this:
+- [Node.js](https://nodejs.org/) (versión recomendada: 16+)
+- [npm](https://www.npmjs.com/) o [yarn](https://yarnpkg.com/)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Instalación y Ejecución en Local
+
+Sigue estos pasos para ejecutar el proyecto en tu entorno local:
+
+1. **Clona el repositorio**
+
+```sh
+  git clone <URL_DEL_REPOSITORIO>
+  cd <NOMBRE_DEL_PROYECTO>
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. **Instala las dependencias**
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```sh
+  npm install
 ```
+
+3. **Crea el archivo **``** en la raíz del proyecto y añade la siguiente variable:**
+
+```
+  VITE_EGO_API=https://challenge.egodesign.dev/api/
+```
+
+4. **Inicia el servidor de desarrollo**
+
+```sh
+  npm run dev
+```
+
+El proyecto estará disponible en `http://localhost:5173/` (o en otro puerto si está ocupado).
+
+## Contacto
+
+Si tienes preguntas o sugerencias sobre este proyecto, no dudes en contactarme.
+
+---
+
+¡Gracias por revisar este desafío técnico! 🚀
+
