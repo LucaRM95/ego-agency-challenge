@@ -35,7 +35,7 @@ Sigue estos pasos para ejecutar el proyecto en tu entorno local:
   npm install
 ```
 
-3. **Crea el archivo **``** en la raíz del proyecto y añade la siguiente variable:**
+3. **Crea el archivo .env en la raíz del proyecto y añade la siguiente variable:**
 
 ```
   VITE_EGO_API=https://challenge.egodesign.dev/api/
@@ -48,6 +48,10 @@ Sigue estos pasos para ejecutar el proyecto en tu entorno local:
 ```
 
 El proyecto estará disponible en `http://localhost:5173/` (o en otro puerto si está ocupado).
+
+## Proyecto desplegado en Vercel
+
+[--> Link al proyecto desplegado <--](https://ego-agency-challenge.vercel.app/)
 
 ## Contacto
 
