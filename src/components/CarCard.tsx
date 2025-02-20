@@ -11,7 +11,7 @@ interface Props {
 const CarCard = ({ id, image, title, price, year }: Props) => {
   return (
     <div className="group flex flex-col items-center justify-between w-[269px] h-[216px] gap-1">
-      <div className="flex flex-col">
+      <div className="flex flex-col text-center">
         <h2 className="text-[28px] font-semibold group-hover:text-[#EB0A1E]">
           {title}
         </h2>

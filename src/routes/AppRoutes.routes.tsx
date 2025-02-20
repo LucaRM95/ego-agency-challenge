@@ -1,5 +1,6 @@
 import React from "react";
 import Home from "../pages/Home";
+import CarDetails from "../pages/CarDetails";
 
 export interface CustomRoute {
   readonly name: string;
@@ -15,5 +16,10 @@ export const AppRoutes: Array<CustomRoute> = [
     name: "default",
     path: "/",
     element: () => <Home />,
+  },
+  {
+    name: "details",
+    path: "/details/:id",
+    element: () => <CarDetails />,
   },
 ];

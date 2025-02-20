@@ -1,5 +1,7 @@
+import { Provider } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router";
 import { AppRoutes, CustomRoute } from "./routes/AppRoutes.routes";
+import store from "./redux/store";
 
 const renderRoutes = (routes: CustomRoute[]) => (
   <>
@@ -13,9 +15,11 @@ const renderRoutes = (routes: CustomRoute[]) => (
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>{renderRoutes(AppRoutes)}</Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>{renderRoutes(AppRoutes)}</Routes>
+      </BrowserRouter>
+    </Provider>
   );
 };
 

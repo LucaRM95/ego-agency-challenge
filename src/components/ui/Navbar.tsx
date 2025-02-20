@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import EgoLogo from "../assets/logos/ego-logo.svg";
+import EgoLogo from "../../assets/logos/ego-logo.svg";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const mainLinks = [
-    { title: "Modelos", href: "#" },
+    { title: "Modelos", href: "/" },
     { title: "Servicios y Accesorios", href: "#" },
     { title: "Financiación", href: "#" },
     { title: "Reviews y Comunidad", href: "#" },
