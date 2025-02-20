@@ -23,7 +23,7 @@ const CarCard = ({ id, image, title, price, year }: Props) => {
       </div>
       <div className="h-[122px] w-[247px]">
         <img
-          className="h-[122px] w-[247px]"
+          className="w-full h-full object-cover"
           src={image}
           alt={`${title}-image`}
         />

@@ -7,3 +7,45 @@
     font-family: "Montserrat", system-ui, sans-serif;
   }
 }
+
+.swiper-pagination-bullet {
+  background-color: #c5c5c5 !important;
+  width: 8px !important;
+  height: 8px !important;
+  opacity: 0.5 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #4a4a4a !important;
+  width: 39px !important;
+  height: 8px !important  ;
+  opacity: 50% !important;
+  border-radius: 4px !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none !important;
+    background-color: #FFFFFF8F;
+    opacity: 50%;
+    height: 100%;
+  }
+}

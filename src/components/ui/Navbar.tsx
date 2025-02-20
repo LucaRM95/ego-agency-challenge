@@ -1,8 +1,14 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import EgoLogo from "../../assets/logos/ego-logo.svg";
+import { NavLink } from "react-router";
+import { useSelector } from "react-redux";
+import { carDetailsSelector } from "../../redux/reducers/sliceCarDetails";
+import { carsSelector } from "../../redux/reducers/sliceCars";
 
 const Navbar = () => {
+  const { cars } = useSelector(carsSelector);
+  const { carDetails } = useSelector(carDetailsSelector);
   const [isOpen, setIsOpen] = useState(false);
 
   const mainLinks = [
@@ -41,6 +47,21 @@ const Navbar = () => {
             <div className="flex items-center">
               <img src={EgoLogo} alt="ego logo" />
             </div>
+            <div className="hidden md:flex items-center gap-12 w-full ms-10 text-[14px] font-semibold">
+              <NavLink
+                className="flex items-center pl-5 pr-5 hover:text-[#EB0A1E] border border-transparent hover:border-b-[2px] hover:border-b-[#EB0A1E] h-full"
+                to="/"
+              >
+                <span>Modelos</span>
+              </NavLink>
+
+              <NavLink
+                className="flex items-center pl-5 pr-5 hover:text-[#EB0A1E] border border-transparent hover:border-b-[2px] hover:border-b-[#EB0A1E] h-full"
+                to={`/details/${carDetails.id ?? cars[0].id}`}
+              >
+                <span>Ficha de Modelo</span>
+              </NavLink>
+            </div>
             <div className="flex items-center">
               <button
                 onClick={() => setIsOpen(!isOpen)}
@@ -58,7 +79,7 @@ const Navbar = () => {
           isOpen ? "translate-x-0" : "translate-x-full"
         } transition-transform duration-300 ease-in-out`}
       >
-        <div className="fixed inset-0 bg-white md:left-[65%]">
+        <div className="fixed inset-0 bg-white md:border md:border-l-1 md:border-l-[#f9fafb] md:left-[65%] xl:left-[75%]">
           <div className="flex justify-end items-center p-4">
             <span className="text-[17px]">Cerrar</span>
             <button
@@ -72,53 +93,53 @@ const Navbar = () => {
           <div className="flex flex-col items-end text-end text-[20px] w-full h-full overflow-y-auto pt-4">
             <div className="space-y-4 w-full px-4 border-b border-gray-100 pb-4">
               {mainLinks.map((link) => (
-                <a
+                <NavLink
                   key={link.title}
-                  href={link.href}
+                  to={link.href}
                   className="block text-gray-800 hover:text-blue-600"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.title}
-                </a>
+                </NavLink>
               ))}
             </div>
 
             <div className="space-y-4 w-full px-4 py-4 border-b border-gray-100">
               {serviceLinks.map((link) => (
-                <a
+                <NavLink
                   key={link.title}
-                  href={link.href}
+                  to={link.href}
                   className="block text-gray-800 hover:text-blue-600"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.title}
-                </a>
+                </NavLink>
               ))}
             </div>
 
             <div className="space-y-4 w-full px-4 py-4 border-b border-gray-100">
               {contactLinks.map((link) => (
-                <a
+                <NavLink
                   key={link.title}
-                  href={link.href}
+                  to={link.href}
                   className="block text-gray-800 hover:text-blue-600"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.title}
-                </a>
+                </NavLink>
               ))}
             </div>
 
             <div className="space-y-4 w-full h-full px-4 py-4 bg-gray-50">
               {additionalLinks.map((link) => (
-                <a
+                <NavLink
                   key={link.title}
-                  href={link.href}
+                  to={link.href}
                   className="block text-gray-800 hover:text-blue-600"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.title}
-                </a>
+                </NavLink>
               ))}
             </div>
           </div>

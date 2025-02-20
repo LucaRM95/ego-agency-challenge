@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-
 import { useParams } from "react-router";
 import { useAppDispatch } from "../redux/store";
 import { useSelector } from "react-redux";
@@ -12,6 +11,7 @@ import { getEgoApi } from "../api/baseEgoApi";
 import Layout from "../components/ui/Layout";
 import CarDetailsHeader from "../components/car_details/CarDetailsHeader";
 import CarHighlights from "../components/car_details/CarHighlights";
+import Carousel from "../components/ui/Carousel";
 
 const CarDetails = () => {
   const params = useParams();
@@ -19,6 +19,7 @@ const CarDetails = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    dispatch(carDetailsActions.setLoading(true));
     getEgoApi()
       .get(`models/${params.id}`)
       .then((response) => {
@@ -34,15 +35,18 @@ const CarDetails = () => {
           <BounceLoader />
         </div>
       ) : (
-        <div className="max-w-7xl mx-auto pt-6">
+        <div className="max-w-7xl lg:max-w-full pt-6">
           <CarDetailsHeader carDetails={carDetails} />
-          <div className="h-[452px] bg-[#F7F7F7]">
-            <span className="text-3xl">Carousel will be here</span>
+          <div className="flex items-center h-[452px] bg-[#F7F7F7]">
+            <Carousel features={carDetails.model_features} />
           </div>
-          {carDetails.model_highlights.map((highlight) => (
-            <CarHighlights highlights={highlight} />
+          {carDetails.model_highlights.map((highlight, index) => (
+            <CarHighlights
+              key={highlight.title}
+              highlights={highlight}
+              inverted={index % 2 !== 0}
+            />
           ))}
-          <div className="bg-black h-[50px]"></div>
         </div>
       )}
     </Layout>

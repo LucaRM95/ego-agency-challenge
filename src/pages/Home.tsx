@@ -71,7 +71,7 @@ const Home = () => {
           <BounceLoader />
         </div>
       ) : (
-        <div className="max-w-7xl mx-auto py-6 px-4">
+        <div className="max-w-7xl lg:max-w-full py-6 px-4">
           <h1 className="text-[35px] font-bold text-gray-900">
             Descubrí todos los modelos
           </h1>
@@ -79,7 +79,7 @@ const Home = () => {
             <FilterSelect title="Filtrar por" options={carTypes} />
             <FilterSelect title="Ordenar por" options={orderFilter} />
           </div>
-          <div className="flex flex-wrap items-center justify-center mt-14 gap-12">
+          <div className="flex flex-wrap items-center justify-center mt-14 gap-12 lg:gap-20">
             {cars.map((car: ICar) => (
               <CarCard
                 key={car.id}
