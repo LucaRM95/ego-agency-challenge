@@ -44,9 +44,9 @@ const Navbar = () => {
       <nav className="bg-white shadow-lg fixed w-full z-50">
         <div className="w-full px-4">
           <div className="flex justify-between h-16">
-            <div className="flex items-center">
+            <NavLink to="/" className="flex items-center">
               <img src={EgoLogo} alt="ego logo" />
-            </div>
+            </NavLink>
             <div className="hidden md:flex items-center gap-12 w-full ms-10 text-[14px] font-semibold">
               <NavLink
                 className="flex items-center pl-5 pr-5 hover:text-[#EB0A1E] border border-transparent hover:border-b-[2px] hover:border-b-[#EB0A1E] h-full"
