@@ -12,9 +12,11 @@ import Layout from "../components/ui/Layout";
 import CarDetailsHeader from "../components/car_details/CarDetailsHeader";
 import CarHighlights from "../components/car_details/CarHighlights";
 import Carousel from "../components/ui/Carousel";
+import { useMediaQuery } from "react-responsive";
 
 const CarDetails = () => {
   const params = useParams();
+  const isDesktop = useMediaQuery({ minWidth: 768 });
   const { carDetails, loading } = useSelector(carDetailsSelector);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -39,7 +41,7 @@ const CarDetails = () => {
           <BounceLoader />
         </div>
       ) : (
-        <div className="max-w-7xl lg:max-w-full pt-6">
+        <div className="max-w-7xl md:max-w-full pt-6">
           <CarDetailsHeader carDetails={carDetails} />
           <div className="flex items-center h-[452px] bg-[#F7F7F7]">
             <Carousel features={carDetails.model_features} />
@@ -48,7 +50,7 @@ const CarDetails = () => {
             <CarHighlights
               key={highlight.title}
               highlights={highlight}
-              inverted={index % 2 !== 0}
+              inverted={isDesktop ? index % 2 !== 0 : false}
             />
           ))}
         </div>

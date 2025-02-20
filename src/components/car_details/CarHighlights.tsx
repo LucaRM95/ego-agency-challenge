@@ -7,7 +7,7 @@ interface Props {
 
 const CarHighlights = ({ highlights, inverted = false }: Props) => {
   return (
-    <div className="flex flex-col lg:flex-row lg:justify-evenly lg:items-center gap-5 mt-10 p-5 mb-10">
+    <div className="flex flex-col md:flex-row md:justify-evenly md:items-center gap-5 mt-10 p-5 mb-10">
       {!inverted && (
         <img
           className="rounded-lg"
@@ -15,7 +15,7 @@ const CarHighlights = ({ highlights, inverted = false }: Props) => {
           alt={`${highlights.title}-image`}
         />
       )}
-      <div className="lg:w-[385px]">
+      <div className="md:w-[385px]">
         <h3 className="font-semibold text-[20px] text-[#373737]">
           {highlights.title}
         </h3>
