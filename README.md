@@ -51,7 +51,7 @@ El proyecto estará disponible en `http://localhost:5173/` (o en otro puerto si 
 
 ## Proyecto desplegado en Vercel
 
-[Si tienes preguntas o sugerencias sobre este proyecto, no dudes en contactarme.](https://ego-agency-challenge.vercel.app/)
+[--> Link al proyecto desplegado <--](https://ego-agency-challenge.vercel.app/)
 
 ## Contacto
 
