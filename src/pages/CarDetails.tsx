@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useAppDispatch } from "../redux/store";
 import { useSelector } from "react-redux";
 import {
@@ -17,6 +17,7 @@ const CarDetails = () => {
   const params = useParams();
   const { carDetails, loading } = useSelector(carDetailsSelector);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(carDetailsActions.setLoading(true));
@@ -25,6 +26,9 @@ const CarDetails = () => {
       .then((response) => {
         dispatch(carDetailsActions.setCarDetailsData(response.data));
         dispatch(carDetailsActions.setLoading(false));
+      })
+      .catch(() => {
+        navigate("/");
       });
   }, []);
 

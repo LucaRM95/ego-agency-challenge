@@ -11,6 +11,7 @@ interface Props {
   options: Array<{ id: number; name: string }>;
   selected: number;
   setSelected: React.Dispatch<React.SetStateAction<number>>;
+  className?: string;
   right?: boolean;
 }
 
@@ -19,11 +20,12 @@ const FilterSelect = ({
   options,
   selected,
   setSelected,
+  className = "",
   right,
 }: Props) => {
   return (
     <Listbox value={selected} onChange={setSelected}>
-      <div className="relative mt-2">
+      <div className={`relative mt-2 ${className}`}>
         <ListboxButton className="grid w-full cursor-default grid-cols-1 rounded-md py-1.5 pr-2 pl-3 text-left text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
           <span className="col-start-1 row-start-1 font-semibold text-[14px] flex items-center gap-3 pr-6">
             {title}
@@ -43,7 +45,7 @@ const FilterSelect = ({
           {options.map((option, index) => (
             <>
               <ListboxOption
-                key={option.id}
+                key={option.name+index}
                 value={option.id}
                 className={`
                   group relative cursor-default py-2 pr-9 pl-3 

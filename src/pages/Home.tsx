@@ -65,11 +65,11 @@ const Home = () => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     getEgoApi()
-    .get("models")
-    .then((response) => {
-      dispatch(carsActions.setCarsData(response.data));
-      dispatch(carsActions.setLoading(false));
-    });
+      .get("models")
+      .then((response) => {
+        dispatch(carsActions.setCarsData(response.data));
+        dispatch(carsActions.setLoading(false));
+      });
   }, []);
   orderCarData = OrderByType(cars, carType);
   orderCarData = OrderByPriceOrYear(orderCarData, order);
@@ -81,12 +81,32 @@ const Home = () => {
           <BounceLoader />
         </div>
       ) : (
-        <div className="max-w-7xl lg:max-w-full py-6 px-4">
-          <h1 className="text-[35px] font-bold text-gray-900">
+        <div className="max-w-7xl lg:max-w-full py-6 px-4 md:p-20">
+          <h1 className="text-[35px] font-bold text-gray-900 md:mb-20">
             Descubrí todos los modelos
           </h1>
           <div className="flex justify-between border-b border-b-1 border-b-[#D8D8D8] pb-1">
+            <div className="hidden xl:flex items-center gap-12 mt-2 leading-[14px] mb-2">
+              <span className="text-[#373737] font-semibold text-[14px]">
+                Filtrar por
+              </span>
+              {carTypes.map((type) => (
+                <span
+                  key={`deskt-${type.id}`}
+                  id={`${type.id}`}
+                  onClick={(e) =>
+                    setCarType(parseInt((e.target as HTMLElement).id))
+                  }
+                  className={`${
+                    carType === type.id ? "bg-[#F7F7F7]" : ""
+                  } hover:bg-[#F7F7F7] rounded-[18px] p-3 cursor-pointer`}
+                >
+                  {type.name}
+                </span>
+              ))}
+            </div>
             <FilterSelect
+              className="xl:hidden"
               title="Filtrar por"
               options={carTypes}
               selected={carType}
