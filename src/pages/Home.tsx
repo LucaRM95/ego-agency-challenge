@@ -3,20 +3,25 @@ import FilterSelect from "../components/FilterSelect";
 import Layout from "../components/ui/Layout";
 import { ICar } from "../interfaces/ICar";
 import { useAppDispatch } from "../redux/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { carsActions, carsSelector } from "../redux/reducers/sliceCars";
 import { getEgoApi } from "../api/baseEgoApi";
 import { BounceLoader } from "react-spinners";
+import { OrderByPriceOrYear, OrderByType } from "../utils/orderData";
 
 const carTypes = [
   {
-    id: 1,
+    id: 0,
     name: "Todos",
   },
   {
+    id: 1,
+    name: "Sedan",
+  },
+  {
     id: 2,
-    name: "Autos",
+    name: "Hatchback",
   },
   {
     id: 3,
@@ -26,13 +31,13 @@ const carTypes = [
     id: 4,
     name: "SUVs y Crossovers",
   },
-  {
-    id: 5,
-    name: "SUVs y Crossovers",
-  },
 ];
 
 const orderFilter = [
+  {
+    id: 0,
+    name: "Nada",
+  },
   {
     id: 1,
     name: "De menor a mayor precio",
@@ -53,16 +58,21 @@ const orderFilter = [
 
 const Home = () => {
   const { loading, cars } = useSelector(carsSelector);
-  const dispatch = useAppDispatch();
+  const [carType, setCarType] = useState<number>(0);
+  const [order, setOrder] = useState<number>(0);
+  let orderCarData: Array<ICar> = cars;
 
+  const dispatch = useAppDispatch();
   useEffect(() => {
     getEgoApi()
-      .get("models")
-      .then((response) => {
-        dispatch(carsActions.setCarsData(response.data));
-        dispatch(carsActions.setLoading(false));
-      });
+    .get("models")
+    .then((response) => {
+      dispatch(carsActions.setCarsData(response.data));
+      dispatch(carsActions.setLoading(false));
+    });
   }, []);
+  orderCarData = OrderByType(cars, carType);
+  orderCarData = OrderByPriceOrYear(orderCarData, order);
 
   return (
     <Layout>
@@ -76,11 +86,22 @@ const Home = () => {
             Descubrí todos los modelos
           </h1>
           <div className="flex justify-between border-b border-b-1 border-b-[#D8D8D8] pb-1">
-            <FilterSelect title="Filtrar por" options={carTypes} />
-            <FilterSelect title="Ordenar por" options={orderFilter} />
+            <FilterSelect
+              title="Filtrar por"
+              options={carTypes}
+              selected={carType}
+              setSelected={setCarType}
+            />
+            <FilterSelect
+              title="Ordenar por"
+              options={orderFilter}
+              selected={order}
+              setSelected={setOrder}
+              right
+            />
           </div>
           <div className="flex flex-wrap items-center justify-center mt-14 gap-12 lg:gap-20">
-            {cars.map((car: ICar) => (
+            {orderCarData.map((car: ICar) => (
               <CarCard
                 key={car.id}
                 id={car.id}

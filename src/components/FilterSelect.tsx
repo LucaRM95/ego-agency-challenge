@@ -1,21 +1,26 @@
-import { useState } from "react";
 import {
   Listbox,
   ListboxButton,
   ListboxOption,
   ListboxOptions,
 } from "@headlessui/react";
-import { CheckIcon } from "@heroicons/react/20/solid";
 import { ChevronDownIcon } from "lucide-react";
 
 interface Props {
   title: string;
   options: Array<{ id: number; name: string }>;
+  selected: number;
+  setSelected: React.Dispatch<React.SetStateAction<number>>;
+  right?: boolean;
 }
 
-const FilterSelect = ({ title, options }: Props) => {
-  const [selected, setSelected] = useState(options[1]);
-
+const FilterSelect = ({
+  title,
+  options,
+  selected,
+  setSelected,
+  right,
+}: Props) => {
   return (
     <Listbox value={selected} onChange={setSelected}>
       <div className="relative mt-2">
@@ -31,24 +36,32 @@ const FilterSelect = ({ title, options }: Props) => {
 
         <ListboxOptions
           transition
-          className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base ring-1 shadow-lg ring-black/5 focus:outline-hidden data-leave:transition data-leave:duration-100 data-leave:ease-in data-closed:data-leave:opacity-0 sm:text-sm"
+          className={`absolute z-10 mt-1 max-h-56 w-auto ${
+            right ? "right-0" : ""
+          } overflow-auto rounded-md bg-white pb-1 text-base ring-1 shadow-lg ring-black/5 focus:outline-hidden data-leave:transition data-leave:duration-100 data-leave:ease-in data-closed:data-leave:opacity-0 sm:text-sm`}
         >
-          {options.map((option) => (
-            <ListboxOption
-              key={option.id}
-              value={option}
-              className="group relative cursor-default py-2 pr-9 pl-3 text-gray-900 select-none data-focus:bg-indigo-600 data-focus:text-white data-focus:outline-hidden"
-            >
-              <div className="flex items-center">
-                <span className="ml-3 block truncate font-normal group-data-selected:font-semibold">
-                  {option.name}
-                </span>
-              </div>
-
-              <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600 group-not-data-selected:hidden group-data-focus:text-white">
-                <CheckIcon aria-hidden="true" className="size-5" />
-              </span>
-            </ListboxOption>
+          {options.map((option, index) => (
+            <>
+              <ListboxOption
+                key={option.id}
+                value={option.id}
+                className={`
+                  group relative cursor-default py-2 pr-9 pl-3 
+                  text-gray-900 select-none data-focus:bg-indigo-600 
+                  data-focus:text-white data-focus:outline-hidden
+                  ${selected === option.id && "bg-[#D1D6D634]"}
+                `}
+              >
+                <div className="flex items-center">
+                  <span className="ml-3 block truncate font-normal text-[10px] group-data-selected:font-semibold">
+                    {option.name}
+                  </span>
+                </div>
+              </ListboxOption>
+              {index !== options.length - 1 && (
+                <div className="bg-[#D8D8D8] h-[1px] w-full"></div>
+              )}
+            </>
           ))}
         </ListboxOptions>
       </div>
