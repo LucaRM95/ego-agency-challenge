@@ -49,6 +49,10 @@ Sigue estos pasos para ejecutar el proyecto en tu entorno local:
 
 El proyecto estará disponible en `http://localhost:5173/` (o en otro puerto si está ocupado).
 
+## Proyecto desplegado en Vercel
+
+[Si tienes preguntas o sugerencias sobre este proyecto, no dudes en contactarme.](https://ego-agency-challenge.vercel.app/)
+
 ## Contacto
 
 Si tienes preguntas o sugerencias sobre este proyecto, no dudes en contactarme.
