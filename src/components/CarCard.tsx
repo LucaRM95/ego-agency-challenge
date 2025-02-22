@@ -1,4 +1,5 @@
 import { NavLink } from "react-router";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 interface Props {
   id: number;
@@ -22,7 +23,7 @@ const CarCard = ({ id, image, title, price, year }: Props) => {
         </div>
       </div>
       <div className="h-[122px] w-[247px]">
-        <img
+        <LazyLoadImage
           className="w-full h-full object-cover"
           src={image}
           alt={`${title}-image`}

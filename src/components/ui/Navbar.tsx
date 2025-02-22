@@ -5,6 +5,7 @@ import { NavLink } from "react-router";
 import { useSelector } from "react-redux";
 import { carDetailsSelector } from "../../redux/reducers/sliceCarDetails";
 import { carsSelector } from "../../redux/reducers/sliceCars";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Navbar = () => {
   const { cars } = useSelector(carsSelector);
@@ -45,7 +46,7 @@ const Navbar = () => {
         <div className="w-full px-4">
           <div className="flex justify-between h-16">
             <NavLink to="/" className="flex items-center">
-              <img src={EgoLogo} alt="ego logo" />
+              <LazyLoadImage src={EgoLogo} alt="ego logo" />
             </NavLink>
             <div className="hidden md:flex items-center gap-12 w-full ms-10 text-[14px] font-semibold">
               <NavLink

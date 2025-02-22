@@ -2,6 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import { Navigation, Pagination } from "swiper/modules";
 import { ModelFeature } from "../../interfaces/ICarDetails";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 interface Props {
   features: Array<ModelFeature>;
@@ -28,7 +29,7 @@ const Carousel = ({ features }: Props) => {
           key={feature.name}
         >
           <div className="h-[204px]">
-            <img
+            <LazyLoadImage
               src={feature.image}
               alt={`${feature.name}-photo`}
               className="w-full h-full object-cover rounded-md"

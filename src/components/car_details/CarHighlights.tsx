@@ -1,3 +1,4 @@
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { ModelHighlight } from "../../interfaces/ICarDetails";
 
 interface Props {
@@ -9,7 +10,7 @@ const CarHighlights = ({ highlights, inverted = false }: Props) => {
   return (
     <div className="flex flex-col md:flex-row md:justify-evenly md:items-center gap-5 mt-10 p-5 mb-10">
       {!inverted && (
-        <img
+        <LazyLoadImage
           className="rounded-lg"
           src={highlights.image}
           alt={`${highlights.title}-image`}
@@ -25,7 +26,7 @@ const CarHighlights = ({ highlights, inverted = false }: Props) => {
         />
       </div>
       {inverted && (
-        <img
+        <LazyLoadImage
           className="rounded-lg"
           src={highlights.image}
           alt={`${highlights.title}-image`}
