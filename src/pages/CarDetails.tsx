@@ -22,6 +22,7 @@ const CarDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    dispatch(carDetailsActions.setLoading(true));
     RequestCarsById(params.id)
       .then((res) => {
         dispatch(carDetailsActions.setCarDetailsData(res));
