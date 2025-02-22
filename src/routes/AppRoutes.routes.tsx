@@ -1,6 +1,7 @@
 import React from "react";
 import Home from "../pages/Home";
 import CarDetails from "../pages/CarDetails";
+import { Navigate } from "react-router";
 
 export interface CustomRoute {
   readonly name: string;
@@ -21,5 +22,10 @@ export const AppRoutes: Array<CustomRoute> = [
     name: "details",
     path: "/details/:id",
     element: () => <CarDetails />,
+  },
+  {
+    name: "",
+    path: "*",
+    element: () => <Navigate to="/" />,
   },
 ];

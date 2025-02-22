@@ -7,12 +7,12 @@ import {
   carDetailsSelector,
 } from "../redux/reducers/sliceCarDetails";
 import { BounceLoader } from "react-spinners";
-import { getEgoApi } from "../api/baseEgoApi";
 import Layout from "../components/ui/Layout";
 import CarDetailsHeader from "../components/car_details/CarDetailsHeader";
 import CarHighlights from "../components/car_details/CarHighlights";
 import Carousel from "../components/ui/Carousel";
 import { useMediaQuery } from "react-responsive";
+import { RequestCarsById } from "../services/RequestCarsServices";
 
 const CarDetails = () => {
   const params = useParams();
@@ -22,16 +22,12 @@ const CarDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(carDetailsActions.setLoading(true));
-    getEgoApi()
-      .get(`models/${params.id}`)
-      .then((response) => {
-        dispatch(carDetailsActions.setCarDetailsData(response.data));
+    RequestCarsById(params.id)
+      .then((res) => {
+        dispatch(carDetailsActions.setCarDetailsData(res));
         dispatch(carDetailsActions.setLoading(false));
       })
-      .catch(() => {
-        navigate("/");
-      });
+      .catch(() => navigate("/"));
   }, []);
 
   return (

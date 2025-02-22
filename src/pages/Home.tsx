@@ -6,9 +6,9 @@ import { useAppDispatch } from "../redux/store";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { carsActions, carsSelector } from "../redux/reducers/sliceCars";
-import { getEgoApi } from "../api/baseEgoApi";
 import { BounceLoader } from "react-spinners";
 import { OrderByPriceOrYear, OrderByType } from "../utils/orderData";
+import { RequestCars } from "../services/RequestCarsServices";
 
 const carTypes = [
   {
@@ -63,14 +63,14 @@ const Home = () => {
   let orderCarData: Array<ICar> = cars;
 
   const dispatch = useAppDispatch();
+
   useEffect(() => {
-    getEgoApi()
-      .get("models")
-      .then((response) => {
-        dispatch(carsActions.setCarsData(response.data));
-        dispatch(carsActions.setLoading(false));
-      });
+    RequestCars().then((res) => {
+      dispatch(carsActions.setCarsData(res));
+      dispatch(carsActions.setLoading(false));
+    });
   }, []);
+
   orderCarData = OrderByType(cars, carType);
   orderCarData = OrderByPriceOrYear(orderCarData, order);
 
