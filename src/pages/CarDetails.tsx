@@ -22,6 +22,11 @@ const CarDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (!params.id) {
+      navigate("/");
+      return;
+    }
+  
     dispatch(carDetailsActions.setLoading(true));
     RequestCarsById(params.id)
       .then((res) => {
@@ -29,7 +34,7 @@ const CarDetails = () => {
         dispatch(carDetailsActions.setLoading(false));
       })
       .catch(() => navigate("/"));
-  }, []);
+  }, [params.id]);
 
   return (
     <Layout>
