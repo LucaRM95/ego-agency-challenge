@@ -13,8 +13,7 @@ export const RequestCars = (): Promise<Array<ICar>> => {
 export const RequestCarsById = (cid: string = ""): Promise<ICarDetails> => {
   return new Promise((resolve, reject) => {
     RequestFactory(`models/${cid}`)
-      .then((res) => { console.log(res) 
-        resolve(res.data)})
+      .then((res) => resolve(res.data))
       .catch((error) => reject(error));
   });
 };
