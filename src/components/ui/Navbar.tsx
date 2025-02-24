@@ -82,11 +82,11 @@ const Navbar = () => {
       >
         <div className="fixed inset-0 bg-white md:border md:border-l-1 md:border-l-[#f9fafb] md:left-[65%] xl:left-[75%]">
           <div className="flex justify-end items-center p-4">
-            <span className="text-[17px]">Cerrar</span>
             <button
               onClick={() => setIsOpen(false)}
-              className="p-2 text-gray-700 hover:text-blue-600 focus:outline-none"
+              className="flex gap-2 p-2 text-gray-700 hover:text-blue-600 focus:outline-none"
             >
+              <span className="text-[17px]">Cerrar</span>
               <X className="h-6 w-6" />
             </button>
           </div>
