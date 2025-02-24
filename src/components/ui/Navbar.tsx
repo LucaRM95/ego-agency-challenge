@@ -1,44 +1,29 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Menu, X } from "lucide-react";
 import EgoLogo from "../../assets/logos/ego-logo.svg";
-import { NavLink } from "react-router";
+import {
+  additionalLinks,
+  contactLinks,
+  mainLinks,
+  serviceLinks,
+} from "../../utils/MenuLinks";
 import { useSelector } from "react-redux";
 import { carDetailsSelector } from "../../redux/reducers/sliceCarDetails";
 import { carsSelector } from "../../redux/reducers/sliceCars";
+import { NavLink } from "react-router";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const Navbar = () => {
   const { cars } = useSelector(carsSelector);
   const { carDetails } = useSelector(carDetailsSelector);
   const [isOpen, setIsOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
-  const mainLinks = [
-    { title: "Modelos", href: "/" },
-    { title: "Servicios y Accesorios", href: "#" },
-    { title: "Financiación", href: "#" },
-    { title: "Reviews y Comunidad", href: "#" },
-  ];
-
-  const serviceLinks = [
-    { title: "Toyota Mobility Service", href: "#" },
-    { title: "Toyota Gazoo Racing", href: "#" },
-    { title: "Toyota Híbridos", href: "#" },
-  ];
-
-  const contactLinks = [
-    { title: "Concesionarios", href: "#" },
-    { title: "Test Drive", href: "#" },
-    { title: "Contacto", href: "#" },
-  ];
-
-  const additionalLinks = [
-    { title: "Actividades", href: "#" },
-    { title: "Servicios al Cliente", href: "#" },
-    { title: "Ventas Especiales", href: "#" },
-    { title: "Innovación", href: "#" },
-    { title: "Prensa", href: "#" },
-    { title: "Acerca de...", href: "#" },
-  ];
+  const handleOverlayClick = (event: React.MouseEvent) => {
+    if (event.target === event.currentTarget) {
+      setIsOpen(false);
+    }
+  };
 
   return (
     <>
@@ -76,11 +61,18 @@ const Navbar = () => {
       </nav>
 
       <div
-        className={`fixed inset-0 z-50 transform ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        } transition-transform duration-300 ease-in-out`}
+        onClick={handleOverlayClick}
+        className={`fixed inset-0 z-50 bg-black bg-opacity-50 transition-opacity duration-300 ${
+          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
       >
-        <div className="fixed inset-0 bg-white md:border md:border-l-1 md:border-l-[#f9fafb] md:left-[65%] xl:left-[75%]">
+        <div
+          ref={menuRef}
+          className="fixed right-0 top-0 h-full w-full md:w-[35%] xl:w-[25%] bg-white shadow-xl transform transition-transform duration-300 ease-in-out"
+          style={{
+            transform: isOpen ? "translateX(0)" : "translateX(100%)",
+          }}
+        >
           <div className="flex justify-end items-center p-4">
             <button
               onClick={() => setIsOpen(false)}
